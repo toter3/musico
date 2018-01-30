@@ -1,0 +1,32 @@
+<div id="single-track" ng-init="init()">
+    <div ng-click="playPause()" class="play-pause-button">
+        <span class="play-animation"></span>
+        <span ng-class="audio.paused ? 'play-button' : 'pause-button'"></span>
+    </div>
+
+    <div class="track-details">
+        <div class="owner">{{trackData.owner}}</div>
+        <div class="name">{{trackData.name}}</div>
+        <div class="bpm">
+            <div>BPM: {{trackData.bpm}}</div>
+            <div ng-show="trackData.orgBpm"
+                 ng-click="returnBpm(trackData)"
+                 class="orig-bpm">
+                 original BPM: {{trackData.orgBpm}}
+            </div>
+        </div>
+    </div>
+    <div class="right-div">
+        <div class="delete row" ng-click="deleteSelf()">
+            <img src="assets/images/garbage.png">
+        </div>
+        <div class="volume">
+            <span class="no-sound-span" ng-show="audio.volume == 0"></span>
+            <img src="assets/images/sound.png">
+            <div class="volume-input"><input type="range" min="0" max="1"
+                                             val="1" step="any"
+                                             ng-model="vol"
+                                             ng-change="volume(vol)"></div>
+        </div>
+    </div>
+</div>

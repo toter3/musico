@@ -1,0 +1,7 @@
+<div id="select-track">
+    <div ng-repeat="track in tracks" class="track-container"
+         ng-show="!(selected.includes(track))" ng-click="addTrack(track)">
+        <span class="tracks-to-add">
+            {{track.name}}</span>
+    </div>
+</div>

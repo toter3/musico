@@ -1,0 +1,33 @@
+.main-div{
+    margin-top: 40px;
+    max-width: 400px;
+}
+
+.open-select-button {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    font-size: 1.2em;
+    background: none;
+    color: #222;
+    padding: 10px;
+    text-align: left;
+}
+
+.empty-list{
+    margin: 10px;
+}
+
+#main-buttons-container{
+    width: 100%;
+}
+#main-buttons-container .main-button{
+    border: 1px solid transparent;
+    border-radius: 50px;
+    background-color: white;
+    padding: 8px 15px;
+    margin: 0 5px;
+}
+#main-buttons-container .main-button:hover{
+    border: 1px solid black;
+}
