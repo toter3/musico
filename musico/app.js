@@ -36,16 +36,16 @@ app.controller("mainCtrl", function ($scope, $http) {
     $scope.sync = function(){
         $scope.selectedTracks.sort(sortFunction);
         mainTrack = $scope.selectedTracks[0];
-        initAnimations()
         angular.forEach($scope.selectedTracks, function(track){
             if(track !== mainTrack) {
-                if(!track.orgBpm) {
+                if(!track.orgBpm)
+                {
                     track.orgBpm = track.bpm;
                 }
-                track.bpm = calcNewBpm(track,mainTrack);
+                track.bpm = mainTrack.bpm;
+                track.audio.currentTime = mainTrack.audio.currentTime % track.audio.duration;
             }
-            track.audio.currentTime = 0;
-            track.audio.loop = true;
+            track.loop = true;
             track.audio.play();
             $scope.allPlaying = true;
         });
@@ -53,18 +53,17 @@ app.controller("mainCtrl", function ($scope, $http) {
 
     // play and stop all. if songs stopped, play and if playing - stop
     $scope.playStopAll = function(){
-      initAnimations();
       angular.forEach($scope.selectedTracks, function(track){
           track.audio.currentTime = 0;
           if($scope.allPlaying) {
               track.audio.pause();
               track.loop = false;
           }else {
-              track.audio.loop = true;
+              track.loop = true;
               track.audio.play()
           }
       });
-      $scope.allPlaying = !$scope.allPlaying
+        $scope.allPlaying = !$scope.allPlaying;
     };
 
     // finds the index of track in the list by its id
@@ -97,19 +96,4 @@ app.controller("mainCtrl", function ($scope, $http) {
         return 0;
     }
 
-    // calc bpm to sync with the longest track.
-    // (i thought it might require calculations with duration but have no idea.
-    // currently just change to the main track bpm)
-    function calcNewBpm(track,mainTrack){
-        return mainTrack.bpm
-    }
-
-    // suppose to init all animations to the beginning
-    function initAnimations() {
-        angular.forEach($('.play-animation'), function (animationEl) {
-            if(animationEl != undefined) {
-                animationEl['animation-play-state'] = 'initial';
-            }
-        })
-    }
 });

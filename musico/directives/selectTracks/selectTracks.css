@@ -1,13 +1,16 @@
+
 #select-track{
     position: absolute;
-    width: 200px;
     border: solid black 1px;
     background-color: white;
     z-index: 10;
+    width: inherit;
+    overflow: hidden;
 }
 
 #select-track .track-container{
-    width: 100%;
+    width: inherit;
+    margin-right: 1px;
     background-color: transparent;
     padding: 10px;
     height: 100%;
@@ -15,4 +18,11 @@
 
 #select-track .track-container:hover{
     background-color: #EEF;
+}
+
+@media screen and (max-width: 400px) {
+    #select-track{
+        width: auto;
+        padding-right: 10%;
+    }
 }

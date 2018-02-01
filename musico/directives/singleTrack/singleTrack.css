@@ -1,14 +1,11 @@
 #single-track{
   border-bottom: 1px solid black;
   padding-top: 8px;
-  width: 370px;
+  width: inherit;
+  padding-bottom: 1%;
 }
 #single-track>div{
   display: inline-block;
-  margin-left: 10px;
-}
-.track-details{
-  width: 160px;
 }
 .track-details>div{
   display: block;
@@ -33,20 +30,20 @@
   border: 1px black solid;
   border-radius: 50%;
   position: relative;
-  overflow: hidden;
 }
-
-.play-animation{
-  height: 50px;
-  width: 0;
-  display: block;
-  background-color: #d9dfef;
+.circle-container{
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.circle{
+  margin: -3px 0 0 -3px !important;
+  width: 0 !important;
 }
 
 .play-pause-button:hover{
   cursor: pointer;
-  /*filter: brightness(110%);*/
-  overflow: hidden;
+  background-color: #eef;
 }
 
 .play-button{
@@ -72,8 +69,16 @@
   border-left: solid #222 5px;
 }
 .right-div{
+  float: right;
   width: 100px;
   position: relative;
+  margin-right: 2%;
+}
+.total-bits{
+  float: left;
+  margin-top: 8px;
+  font-size: .8em;
+  color: gray;
 }
 .delete:hover{
   cursor: pointer;
@@ -186,8 +191,4 @@ input[type=range]:focus::-ms-fill-lower {
 }
 input[type=range]:focus::-ms-fill-upper {
   background: #000000;
-}
-@keyframes playing-animation {
-  from {width: 0;}
-  to{width: 100%;}
 }

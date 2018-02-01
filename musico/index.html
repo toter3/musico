@@ -1,39 +1,48 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="directives/selectTracks/selectTracks.css">
     <link rel="stylesheet" href="directives/singleTrack/singleTrack.css">
     <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-<div ng-app="angModule" ng-controller="mainCtrl" ng-init="init()" class="container main-div">
-    <div id="main-buttons-container">
-        <button class="main-button" ng-click="sync()">
-            SYNC
-        </button>
-        <button class="main-button" ng-click="playStopAll()">
-            {{allPlaying ? 'STOP':'PLAY'}}
-        </button>
-    </div>
-
-    <div id="open-select-container">
-        <button  ng-click="selectOpen = !selectOpen" class="open-select-button"
-                 ng-disabled="trackList.length == selectedTracks.length">
-            Select track
-        </button>
-        <select-tracks tracks="trackList" ng-show="selectOpen && trackList.length != selectedTracks.length"
-                       selected="selectedTracks">
-
-        </select-tracks>
-        <div class="empty-list" ng-show="selectedTracks.length == 0">
-            No tracks selected for looper
+<div class="container">
+    <div ng-app="angModule" ng-controller="mainCtrl" ng-init="init()"
+         class="main-div">
+        <div id="main-buttons-container">
+            <button class="main-button" ng-click="sync()"
+                    ng-disabled="selectedTracks.length == 0">
+                SYNC
+            </button>
+            <button class="main-button" ng-click="playStopAll()"
+                    ng-disabled="selectedTracks.length == 0">
+                {{allPlaying ? 'STOP':'PLAY'}}
+            </button>
         </div>
-    </div>
 
-    <div ng-repeat="track in selectedTracks">
-        <single-track track-data="track" delete-func="removeTrack">
-        </single-track>
+        <div id="open-select-container">
+            <button ng-click="selectOpen = !selectOpen"
+                    class="open-select-button"
+                    ng-disabled="trackList.length == selectedTracks.length">
+                Select track
+            </button>
+            <select-tracks tracks="trackList"
+                           ng-show="selectOpen && trackList.length != selectedTracks.length"
+                           selected="selectedTracks">
+
+            </select-tracks>
+            <div class="empty-list" ng-show="selectedTracks.length == 0">
+                No tracks selected for looper
+            </div>
+        </div>
+
+        <div ng-repeat="track in selectedTracks" class="selected-list">
+            <single-track track-data="track" delete-func="removeTrack">
+            </single-track>
+        </div>
     </div>
 </div>
 
@@ -45,6 +54,6 @@
         src="http://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
-
+<script src="libs/circle-progress.min.js"></script>
 </body>
 </html>

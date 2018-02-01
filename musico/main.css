@@ -1,8 +1,13 @@
 .main-div{
+    margin: auto;
+    padding-right: 5%;
     margin-top: 40px;
-    max-width: 400px;
+    width: 400px;
 }
 
+#open-select-container, select-tracks{
+    width: inherit;
+}
 .open-select-button {
     width: 100%;
     border: none;
@@ -12,6 +17,10 @@
     color: #222;
     padding: 10px;
     text-align: left;
+}
+
+.open-select-button:hover{
+    background-color: #eef;
 }
 
 .empty-list{
@@ -28,6 +37,20 @@
     padding: 8px 15px;
     margin: 0 5px;
 }
-#main-buttons-container .main-button:hover{
+#main-buttons-container .main-button[disabled]{
+    color: gray;
+}
+#main-buttons-container .main-button:not([disabled]):hover{
     border: 1px solid black;
 }
+
+.selected-list{
+    width: inherit;
+}
+
+@media screen and (max-width: 400px) {
+    .main-div{
+        width: 100%;
+    }
+}
+

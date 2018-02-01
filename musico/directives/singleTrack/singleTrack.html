@@ -1,24 +1,30 @@
 <div id="single-track" ng-init="init()">
+
     <div ng-click="playPause()" class="play-pause-button">
-        <span class="play-animation"></span>
+        <div class="circle-container"><div class="circle" id="circle-b"></div></div>
         <span ng-class="audio.paused ? 'play-button' : 'pause-button'"></span>
     </div>
 
     <div class="track-details">
-        <div class="owner">{{trackData.owner}}</div>
-        <div class="name">{{trackData.name}}</div>
+        <div class="owner" title="{{trackData.owner}}">{{trackData.owner | limitTo : 15}}</div>
+        <div class="name" title="{{trackData.name}}">{{trackData.name | limitTo : 18}}</div>
         <div class="bpm">
             <div>BPM: {{trackData.bpm}}</div>
             <div ng-show="trackData.orgBpm"
                  ng-click="returnBpm(trackData)"
                  class="orig-bpm">
-                 original BPM: {{trackData.orgBpm}}
+                original BPM: {{trackData.orgBpm}}
             </div>
         </div>
     </div>
     <div class="right-div">
-        <div class="delete row" ng-click="deleteSelf()">
-            <img src="assets/images/garbage.png">
+        <div class="top-right">
+            <div class="total-bits">Beats: {{(trackData.bpm * audio.duration)/60 |
+                number : 1 }}
+            </div>
+            <div class="delete row" ng-click="deleteSelf()">
+                <img src="assets/images/garbage.png">
+            </div>
         </div>
         <div class="volume">
             <span class="no-sound-span" ng-show="audio.volume == 0"></span>
